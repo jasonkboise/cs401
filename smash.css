@@ -1,0 +1,145 @@
+body {
+  background-color: white;
+  margin: 0;
+}
+
+h1 {
+  font-size: 75px;
+  font-family: Helvetica;
+  text-align: center;
+}
+
+#content {
+  border: 1px solid black;
+  font-size: 25px;
+  font-family: Helvetica;
+  margin: 0 30;
+  padding: 30 30;
+  background-color: #EFEFEF;
+  overflow: hidden;
+}
+
+.nav {
+  font-size: 15px;
+  font-family: Helvetica;
+  float: right;
+  margin: 0 10;
+}
+
+#footer {
+  text-align: center;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.render {
+  border: 5px solid black;
+  max-width: 550px;
+  background-color: white;
+}
+
+.column {
+  float: left;
+  margin: 30 30;
+  text-align: center;
+}
+
+#char_table {
+  border-collapse: collapse;
+  margin: 30 30;
+
+}
+
+#comment_table {
+  border-collapse: collapse;
+  margin: 15 0;
+  border: 3px solid #CDCDCD;
+  font-size: 30px;
+}
+
+.comment_th {
+  background-color: #AAAAAA;
+  padding: 10 13;
+}
+.comment_td {
+  padding: 10 13;
+}
+
+td {
+  background-color: white;
+  border: 3px solid black;
+}
+
+caption {
+  font-size: 25px;
+  font-family: Helvetica;
+}
+
+.guide {
+  background-color: #DCDCDC;
+  border: 1px solid black;
+  min-height: 200px;
+  width: 400px;
+  margin: 10 10;
+}
+
+.text { 
+  border: 1px solid black;
+  font-size: 25px;
+  font-family: Helvetica;
+  margin: 0 30;
+  padding: 30 30;
+  background-color: #DCDCDC;
+  min-height: 300px;
+  margin-bottom: 20;
+}
+
+#guideRender {
+  border: 1px solid black;
+  max-width: 150px;
+  background-color: white;
+  margin: 10;
+}
+
+#home {
+  text-align:left;
+  float:right;
+}
+
+#info {
+  background-color: white;
+}
+
+#login {
+  position: relative;
+  left: 30%;
+  margin: 30 30;
+}
+
+#create {
+  font-size: 10px;
+}
+
+div.good {
+  border: black 1px solid;
+  padding: 10 15;
+  background-color: green;
+  color: white;
+  font-family:Helvetica;
+  margin-bottom: 5px;
+  width: 500px;
+
+}
+
+div.bad {
+  border: black 1px solid;
+  padding: 10 15;
+  background-color: #B73239;
+  color: white;
+  font-family:Helvetica;
+  margin-bottom: 5px;
+  width: 500px;
+}
