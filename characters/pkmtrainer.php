@@ -8,7 +8,7 @@
     </div>
     <div id="picture">
       <div>
-        <img src="/images/pkmrender.png" alt="Pokemon Trainer" class="render">
+        <img src="/images/pkmtrainerrender.png" alt="Pokemon Trainer" class="render">
       </div>
     </div>
   </div>

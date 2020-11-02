@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" href="../images/favicon.png"/>
   </head>
   <body>
-
   <?php
     if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] == false || !isset($_SESSION['authenticated'])) {
       
@@ -16,7 +15,8 @@
      
       
     } else {
-      echo "<div class='nav'><a href='../logout.php'>Logout</a></div>";
+      echo "<div class='nav'><a href='../logout.php'>Logout</a></div><div class='nav'><a href='../create_guide.php'>Create Guide</a></div>";
+      echo "<div class='nav'>Welcome, " . $_SESSION['authenticated'] . "!</div>";
      
     }
     ?>

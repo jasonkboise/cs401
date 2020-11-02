@@ -3,11 +3,22 @@ require_once 'Dao.php';
 
 function renderTable () {
   $dao = new Dao();
-  $comments = $dao->getComments();
-  if (count(get_object_vars($comments)) == 0) {
-    echo "No comments yet";
+  $guide_id = null;
+  
+  if (isset($_GET['guide_id'])) {
+    $guide_id = $_GET['guide_id'];
+  }
+  $comments = $dao->getComments($guide_id);
+  if($comments == null) {
+    echo "Error: No guide was found.";
     exit;
   }
+  
+  elseif ($comments->rowCount() == 0) {
+    echo "No comments yet. Be the first to leave one!";
+    exit;
+  }
+  
   ?>
   <table id="comment_table">
     <thead>

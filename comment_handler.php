@@ -3,6 +3,10 @@ session_start();
 require_once 'Dao.php';
 $_SESSION['bad'] = array();
 $_SESSION['good'] = array();
+$guide_id = null;
+if (isset($_GET['guide_id'])) {
+  $guide_id = $_GET['guide_id'];
+}
 
 // validating
 
@@ -21,9 +25,9 @@ if (count($_SESSION['bad']) > 0) {
 
 $dao = new Dao();
 $username = $dao->getUserId($_SESSION['authenticated'])->fetch(PDO::FETCH_BOTH)[0];
-$dao->addComment($_POST['comment'], $username);
+$dao->addComment($_POST['comment'], $username, $guide_id);
 $_SESSION['good'][] = "Thank you for posting";
 
 // redirect back to the comments page
-header("Location: guide.php");
+header("Location: /guide.php?guide_id=$guide_id");
 exit();

@@ -8,7 +8,7 @@
     </div>
     <div id="picture">
       <div>
-        <img src="/images/ganonrender.png" alt="Ganondorf" class="render">
+        <img src="/images/ganondorfrender.png" alt="Ganondorf" class="render">
       </div>
     </div>
   </div>

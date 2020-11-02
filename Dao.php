@@ -29,25 +29,49 @@
     return $conn->query("select * from user", PDO::FETCH_ASSOC);
   }
 
+  public function getGuides() {
+    $conn = $this->getConnection();
+    return $conn->query("select * from guide", PDO::FETCH_ASSOC);
+
+  }
+
   public function getUserId($username) {
     $conn = $this->getConnection();
     return $conn->query("select user_id from user where username = '$username'", PDO::FETCH_ASSOC);
   }
 
-  public function getComments() {
+  public function getUser($user_id) {
     $conn = $this->getConnection();
-    return $conn->query("select username, comment, date_entered from comment join user on user.user_id=comment.user_id order by date_entered desc;", PDO::FETCH_ASSOC);
+    return $conn->query("select * from user where user_id = '$user_id'");
   }
 
-  public function getGuide($id) {
+  public function getComments($guide_id) {
     $conn = $this->getConnection();
+    return $conn->query("select username, comment, date_entered, guide_id from comment join user on user.user_id=comment.user_id where guide_id=$guide_id order by date_entered desc;", PDO::FETCH_ASSOC);
   }
 
-  public function addComment($comment, $user_id) {
+  public function getGuide($guide_id) {
     $conn = $this->getConnection();
-    $saveQuery = "insert into comment (comment, user_id) values (:comment, :user_id)";
+    return $conn->query("select * from guide where guide_id='$guide_id'");
+  }
+
+  public function addComment($comment, $user_id, $guide_id) {
+    $conn = $this->getConnection();
+    $saveQuery = "insert into comment (comment, user_id, guide_id) values (:comment, :user_id, :guide_id)";
     $q = $conn->prepare($saveQuery);
     $q->bindParam(":comment", $comment);
+    $q->bindParam(":user_id", $user_id);
+    $q->bindParam(":guide_id", $guide_id);
+    $q->execute();
+  }
+
+  public function addGuide($title, $smash_char, $guide, $user_id) {
+    $conn = $this->getConnection();
+    $saveQuery = "insert into guide(title, smash_char, guide, user_id) values (:title, :smash_char, :guide, :user_id)";
+    $q = $conn->prepare($saveQuery);
+    $q->bindParam(":title", $title);
+    $q->bindParam(":smash_char", $smash_char);
+    $q->bindParam(":guide", $guide);
     $q->bindParam(":user_id", $user_id);
     $q->execute();
   }

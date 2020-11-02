@@ -3,27 +3,56 @@
   require_once("comment_table.php");
   require_once("Dao.php");
   $dao = new Dao();
+  $guide = null;
+  if (isset($_GET['guide_id'])) {
+    $guide = $dao->getGuide($_GET['guide_id'])->fetch(PDO::FETCH_ASSOC);
+  }
+
 
 ?>
   <div id="home">
       <a href="../index.php">Home</a>
-    </div>
-  <div> This is my Banjo Guide! </div>
+  </div>
+  <div>  
+    <?php
+    if (isset($guide))  {
+      echo "<h2>" . $guide['title'] . "</h2>";
+    }
+    else {
+      echo "Error: No title found.";
+    }
+    ?>
+  </div>
   <div class="text">
-    <a href="characters/banjo.php"><img src="/images/banjorender.png" alt="Banjo & Kazooie" id="guideRender"></a>
+    <?php
+    if (isset($guide)) {
+      echo "<a href='characters/" . $guide['smash_char'] . ".php'><img src='/images/" . $guide['smash_char'] . "render.png' alt='" . $guide['smash_char'] . "'id='guideRender'></a>";
+    }
+    ?>
+    
     <div>
-      Example text for the guide page.
+    <?php
+    if (isset($guide))  {
+      echo $guide['guide'];
+    }
+    else {
+      echo "Error: No text found.";
+    }
+    ?>
     </div>
   </div>
   <?php 
-  if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']!=false) {
-    echo "<form method='POST' action='comment_handler.php'>
-    <div>Comment: <input type='text' name='comment' id='comment'/></div>
-    <input type='submit' value='Post Commment'>
-  </form>";
-  }
-  else {
-    echo "<div>Login to leave a comment!</div>";
+  if (isset($guide)){
+    echo "<div id='author'>Guide by: " . $dao->getUser($guide['user_id'])->fetch()['username'] . "</div>";
+    if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']!=false) {
+      echo "<form method='POST' action='comment_handler.php?guide_id=" . $guide['guide_id'] . "'>
+      <div>Comment: <input type='text' name='comment' id='comment'/></div>
+      <input type='submit' value='Post Commment'>
+      </form>";
+    }
+    else {
+      echo "<div>Login to leave a comment!</div>";
+    }
   }
 
   if (isset($_SESSION['good'])) {

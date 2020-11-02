@@ -86,6 +86,11 @@ caption {
   margin: 10 10;
 }
 
+#guide_text {
+  height: 200px;
+  min-width: 500px;
+}
+
 .text { 
   border: 1px solid black;
   font-size: 25px;
@@ -101,7 +106,8 @@ caption {
   border: 1px solid black;
   max-width: 150px;
   background-color: white;
-  margin: 10;
+  margin: 5;
+  float:left;
 }
 
 #home {
@@ -142,4 +148,9 @@ div.bad {
   font-family:Helvetica;
   margin-bottom: 5px;
   width: 500px;
+}
+
+#author {
+  position: absolute;
+  right: 10%;
 }
