@@ -13,6 +13,15 @@ foreach($users as $user) {
   echo "<div>" . $user['user_id'] . " " . $user['username'] . " " . $user['password'] . " " . $user['email'] . "</div>";
 }
 */
+
+$email_preset = "";
+$name_preset = "";
+
+if (isset($_SESSION['form'])) {
+  $email_preset = $_SESSION['form']['Cemail'];
+  $name_preset = $_SESSION['form']['Cusername'];
+  unset($_SESSION['form']);
+}
   
 ?>
 <div id="home">
@@ -20,8 +29,8 @@ foreach($users as $user) {
 </div>
   <form id="login" method="POST" action="create_handler.php">
     <div>Create Account</div>
-    <div>Email: <input type="text" name="Cemail" id="email"/></div>
-    <div>Username: <input type="text" name="Cusername" id="username"/></div>
+    <div>Email: <input value="<?php echo $email_preset;?>" type="text" name="Cemail" id="email"/></div>
+    <div>Username: <input value="<?php echo $name_preset;?>" type="text" name="Cusername" id="username"/></div>
     <div>Password: <input type="text" name="Cpassword" id="password"/></div>
     <div>Confirm Password: <input type="text" name="confirm" id="confirm"/></div>
     <input type="submit" value="Submit">

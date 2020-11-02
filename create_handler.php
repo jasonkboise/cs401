@@ -59,6 +59,7 @@ if ($passCheck==1 && strcmp($_POST['Cpassword'], $_POST['confirm']) == 0 && $use
     exit;
 }
 else {
+    $_SESSION['form'] = $_POST;
     header("Location: create.php");
     exit;
 }

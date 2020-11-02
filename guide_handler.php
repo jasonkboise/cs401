@@ -23,6 +23,7 @@ if(strlen($_POST['guide']) > 65535) {
 }
 
 if (count($_SESSION['bad']) > 0) {
+  $_SESSION['form'] = $_POST;
   header("Location: create_guide.php");
   exit();
 }

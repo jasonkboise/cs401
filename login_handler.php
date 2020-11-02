@@ -18,6 +18,7 @@ if ($dao->userExists($_POST['username'], $_POST['password'])) {
   header("Location: index.php");
   exit();
 } else {
+  $_SESSION['form'] = $_POST;
   $_SESSION['authenticated'] = false;
   $_SESSION['bad'][] = "Username or password was incorrect.";
   header("Location: login.php");

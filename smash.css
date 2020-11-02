@@ -89,6 +89,10 @@ caption {
 #guide_text {
   height: 200px;
   min-width: 500px;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0.4em;
+  padding-right: 0.4em;
 }
 
 .text { 
@@ -129,7 +133,7 @@ caption {
   font-size: 10px;
 }
 
-div.good {
+#good {
   border: black 1px solid;
   padding: 10 15;
   background-color: green;
@@ -140,7 +144,7 @@ div.good {
 
 }
 
-div.bad {
+.bad {
   border: black 1px solid;
   padding: 10 15;
   background-color: #B73239;

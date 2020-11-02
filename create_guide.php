@@ -5,6 +5,14 @@ if (!isset($_SESSION['authenticated']) || $_SESSION == false) {
     exit();
 }
 
+$title_preset = "";
+$guide_preset = "";
+if (isset($_SESSION['form'])) {
+  $title_preset = $_SESSION['form']['title'];
+  $guide_preset = $_SESSION['form']['guide'];
+  unset($_SESSION['form']);
+}
+
 ?>
 <div>
 <form method="POST" action="guide_handler.php">
@@ -89,14 +97,13 @@ if (!isset($_SESSION['authenticated']) || $_SESSION == false) {
     <option value="byleth">Byleth</option>
     <option value="minmin">Min Min</option>
 </select>
-<div>Title: <input type="text" name="title" id="title"/></div>
+<div>Title: <input value="<?php echo $title_preset;?>" type="text" name="title" id="title"/></div>
 <div>Text:</div>
-<div><input type="text" name="guide" id="guide_text"/></div>
+<div><input value="<?php echo $guide_preset;?>" type="text" name="guide" id="guide_text"/></div>
 <input type="submit" value="Submit">
 </form>
 </div>
 <?php   
-echo $_SESSION['authenticated'];
   if (isset($_SESSION['bad'])) {
     foreach ($_SESSION['bad'] as $message) {
       echo "<div class='bad'>{$message}</div>";

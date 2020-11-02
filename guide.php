@@ -8,6 +8,14 @@
     $guide = $dao->getGuide($_GET['guide_id'])->fetch(PDO::FETCH_ASSOC);
   }
 
+  $title_preset = "";
+  $guide_preset = "";
+  if (isset($_SESSION['form'])) {
+    $title_preset = $_SESSION['form']['title'];
+    $guide_preset = $_SESSION['form']['guide_text'];
+    unset($_SESSION['form']);
+  }
+
 
 ?>
   <div id="home">

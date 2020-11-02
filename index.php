@@ -44,7 +44,7 @@ require_once('Dao.php') ?>
     <?php
     if (isset($_SESSION['good'])) {
     foreach ($_SESSION['good'] as $message) {
-      echo "<div class='good'>{$message}</div>";
+      echo "<div class='column' id='good'>{$message}</div>";
     }
     unset($_SESSION['good']);
     
