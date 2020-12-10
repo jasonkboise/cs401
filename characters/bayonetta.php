@@ -17,7 +17,7 @@
       Traits and Moves
     </div>
     <div class="guide">
-      Info goes here
+    Info goes here
     </div>
   </div>
   <div class="column">
@@ -25,7 +25,19 @@
       Guides
     </div>
     <div class="guide">
-       Info goes here
+    <?php
+        require_once('../Dao.php');
+        $dao = new Dao();
+        $guides = $dao->getGuidesFor("bayonetta");
+        if ($guides->rowCount() >0) {
+          foreach($guides as $guide) {
+            echo "<div><a href='../guide.php?guide_id=" . $guide['guide_id'] . "'> " . htmlspecialchars($guide['title']) . "</a></div>";
+          }
+        }
+        else {
+          echo "<div>No guides found for this character.</div>";
+        }
+        ?>
     </div>
   </div>
 <?php require_once('../footer.php'); ?>

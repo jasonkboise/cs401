@@ -29,17 +29,32 @@ if (isset($_SESSION['form'])) {
 </div>
   <form id="login" method="POST" action="create_handler.php">
     <div>Create Account</div>
-    <div>Email: <input value="<?php echo $email_preset;?>" type="text" name="Cemail" id="email"/></div>
-    <div>Username: <input value="<?php echo $name_preset;?>" type="text" name="Cusername" id="username"/></div>
-    <div>Password: <input type="text" name="Cpassword" id="password"/></div>
-    <div>Confirm Password: <input type="text" name="confirm" id="confirm"/></div>
+    <div>
+      <label for="create_email">Email:</label>
+      <input value="<?php echo $email_preset;?>" type="text" name="Cemail" id="Cemail"/>
+      <span class="small_error">Your email does not look valid.</span>
+    </div>
+    <div>
+      <label for="create_username">Username:</label> 
+      <input value="<?php echo $name_preset;?>" type="text" name="Cusername" id="Cusername"/>
+      <span class="small_error">Your username is invalid.</span>
+    </div>
+    <div>
+      <label for="create_password">Password:</label> 
+      <input type="password" name="Cpassword" id="Cpassword"/>
+      <span class="small_error"></span>
+    </div>
+    <div>
+      <label for="create_confirm">Confirm Password:</label> 
+      <input type="password" name="confirm" id="confirm"/>
+    </div>
     <input type="submit" value="Submit">
   </form>
     
 <?php 
   if (isset($_SESSION['bad'])) {
     foreach ($_SESSION['bad'] as $message) {
-      echo "<div class='bad'>{$message}</div>";
+      echo "<div class='bad'>{$message} <span class='close_error'>X</span></div>";
     }
     unset($_SESSION['bad']);
   }

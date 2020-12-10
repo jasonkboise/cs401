@@ -8,22 +8,20 @@
     $guide = $dao->getGuide($_GET['guide_id'])->fetch(PDO::FETCH_ASSOC);
   }
 
-  $title_preset = "";
-  $guide_preset = "";
-  if (isset($_SESSION['form'])) {
-    $title_preset = $_SESSION['form']['title'];
-    $guide_preset = $_SESSION['form']['guide_text'];
-    unset($_SESSION['form']);
-  }
-
 
 ?>
   <div id="home">
       <a href="../index.php">Home</a>
   </div>
+  <?php 
+    if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']!=false && isset($guide) && $guide != false) {
+      echo "<div id='username' username=" . $_SESSION['authenticated'] . "></div>";
+      echo "<div id='guide_id' guide_id=" . $_GET['guide_id'] . "></div>";
+    }
+  ?>
   <div>  
     <?php
-    if (isset($guide))  {
+    if (isset($guide) && $guide != false)  {
       echo "<h2>" . $guide['title'] . "</h2>";
     }
     else {
@@ -33,14 +31,14 @@
   </div>
   <div class="text">
     <?php
-    if (isset($guide)) {
+    if (isset($guide) && $guide != false) {
       echo "<a href='characters/" . $guide['smash_char'] . ".php'><img src='/images/" . $guide['smash_char'] . "render.png' alt='" . $guide['smash_char'] . "'id='guideRender'></a>";
     }
     ?>
     
     <div>
     <?php
-    if (isset($guide))  {
+    if (isset($guide) && $guide != false)  {
       echo $guide['guide'];
     }
     else {
@@ -50,10 +48,10 @@
     </div>
   </div>
   <?php 
-  if (isset($guide)){
+  if (isset($guide) && $guide != false){
     echo "<div id='author'>Guide by: " . $dao->getUser($guide['user_id'])->fetch()['username'] . "</div>";
     if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']!=false) {
-      echo "<form method='POST' action='comment_handler.php?guide_id=" . $guide['guide_id'] . "'>
+      echo "<form id='comment_form'>
       <div>Comment: <input type='text' name='comment' id='comment'/></div>
       <input type='submit' value='Post Commment'>
       </form>";
@@ -71,7 +69,7 @@
     }
   if (isset($_SESSION['bad'])) {
       foreach ($_SESSION['bad'] as $message) {
-        echo "<div class='bad'>{$message}</div>";
+        echo "<div class='bad'>{$message}<span class='close_error'>X</span></div>";
       }
       unset($_SESSION['bad']);
     }

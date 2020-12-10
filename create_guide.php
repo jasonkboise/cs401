@@ -14,8 +14,11 @@ if (isset($_SESSION['form'])) {
 }
 
 ?>
+<div id="home">
+      <a href="../index.php">Home</a>
+</div>
 <div>
-<form method="POST" action="guide_handler.php">
+<form method="POST" action="guide_handler.php" id="guide_form">
 <label for="smash_char">Choose a character:</label>
 <select name="smash_char" id="smash_char">
     <option value="mario">Mario</option>
@@ -97,16 +100,19 @@ if (isset($_SESSION['form'])) {
     <option value="byleth">Byleth</option>
     <option value="minmin">Min Min</option>
 </select>
-<div>Title: <input value="<?php echo $title_preset;?>" type="text" name="title" id="title"/></div>
-<div>Text:</div>
-<div><input value="<?php echo $guide_preset;?>" type="text" name="guide" id="guide_text"/></div>
+<div>
+  <label for="title">Title:</label> 
+  <input value="<?php echo $title_preset;?>" type="text" name="title" id="title"/>
+</div>
+<div><label for="text">Text:</label></div>
+<div><textarea form="guide_form" name="guide" id="guide_text" rows="4" cols="50"><?php echo $guide_preset;?></textarea></div>
 <input type="submit" value="Submit">
 </form>
 </div>
 <?php   
   if (isset($_SESSION['bad'])) {
     foreach ($_SESSION['bad'] as $message) {
-      echo "<div class='bad'>{$message}</div>";
+      echo "<div class='bad'>{$message}<span class='close_error'>X</span></div>";
     }
     unset($_SESSION['bad']);
   }

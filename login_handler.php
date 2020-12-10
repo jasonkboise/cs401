@@ -13,7 +13,9 @@ $_SESSION['bad']=array();
 //   redirect back to login form with an error
 // }
 
-if ($dao->userExists($_POST['username'], $_POST['password'])) {
+$newPass = hash("sha256", $_POST['password'] . "fUrT1&45FeW109kJ*vD45D%R");
+
+if ($dao->userExists($_POST['username'], $newPass)) {
   $_SESSION['authenticated'] = $_POST['username'];
   header("Location: index.php");
   exit();

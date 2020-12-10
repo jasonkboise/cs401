@@ -18,8 +18,14 @@
 
   <form method="POST" action="login_handler.php" id="login">
     <div>Login</div>
-    <div>Username: <input value="<?php echo $name_preset;?>" type="text" name="username" id="username"/></div>
-    <div>Password: <input value="<?php echo $pass_preset;?>"type="text" name="password" id="password"/></div>
+    <div>
+      <label for="username">Username:</label> 
+      <input value="<?php echo $name_preset;?>" type="text" name="username" id="username"/>
+    </div>
+    <div>
+      <label for="password">Password:</label> 
+      <input value="<?php echo $pass_preset;?>"type="password" name="password" id="password"/>
+    </div>
     <input type="submit" value="Submit">
     <div id="create">Don't have an account? <a href="../create.php">Create one!</a></div>
   </form>
@@ -34,7 +40,7 @@
   }
   if (isset($_SESSION['bad'])) {
     foreach ($_SESSION['bad'] as $message) {
-      echo "<div class='bad'>{$message}</div>";
+      echo "<div class='bad'>{$message} <span class='close_error'>X</span></div>";
     }
     unset($_SESSION['bad']);
   }

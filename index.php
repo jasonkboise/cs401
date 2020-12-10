@@ -1,5 +1,6 @@
 <?php require_once ('top.php');
 require_once('Dao.php') ?>
+<div>
     <div class="column">
     <?php require_once ('table.php'); ?>
     </div>
@@ -11,7 +12,7 @@ require_once('Dao.php') ?>
         <?php
         $dao = new Dao();
         $guides = $dao->getGuides();
-        if (count(get_object_vars($guides)) >0) {
+        if ($guides->rowCount() >0) {
           foreach($guides as $guide) {
             echo "<div><a href='../guide.php?guide_id=" . $guide['guide_id'] . "'> " . htmlspecialchars($guide['title']) . "</a></div>";
           }
@@ -44,11 +45,12 @@ require_once('Dao.php') ?>
     <?php
     if (isset($_SESSION['good'])) {
     foreach ($_SESSION['good'] as $message) {
-      echo "<div class='column' id='good'>{$message}</div>";
+      echo "<div class='column' id='good'>{$message}<span class='close_error'>X</span></div>";
     }
     unset($_SESSION['good']);
     
   }
   ?>
+  </div>
 <?php require_once ('footer.php'); ?>
 

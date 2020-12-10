@@ -7,6 +7,9 @@ $guide_id = null;
 if (isset($_GET['guide_id'])) {
   $guide_id = $_GET['guide_id'];
 }
+else {
+  $guide_id = $_POST['guide_id'];
+}
 
 // validating
 
@@ -19,7 +22,7 @@ if (strlen($_POST['comment']) > 256) {
 }
 
 if (count($_SESSION['bad']) > 0) {
-  header("Location: guide.php");
+  header("Location: guide.php?guide_id=$guide_id");
   exit();
 }
 

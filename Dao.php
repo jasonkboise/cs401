@@ -35,6 +35,11 @@
 
   }
 
+  public function getGuidesFor($character) {
+    $conn = $this->getConnection();
+    return $conn->query("select * from guide where smash_char = '$character'");
+  }
+
   public function getUserId($username) {
     $conn = $this->getConnection();
     return $conn->query("select user_id from user where username = '$username'", PDO::FETCH_ASSOC);

@@ -54,7 +54,10 @@ elseif ($passCheck == 1 && strcmp($_POST['Cpassword'], $_POST['confirm']) !== 0)
 
 if ($passCheck==1 && strcmp($_POST['Cpassword'], $_POST['confirm']) == 0 && $userCheck==1 && $emailCheck==1 && !$exists) {
     $_SESSION['good'][] = "Account successfully created! Please log in.";
-    $dao->addUser($_POST['Cemail'], $_POST['Cusername'], $_POST['Cpassword']);
+
+    $newPass = hash("sha256", $password . "fUrT1&45FeW109kJ*vD45D%R");
+
+    $dao->addUser($_POST['Cemail'], $_POST['Cusername'], $newPass);
     header("Location: login.php");
     exit;
 }

@@ -15,7 +15,7 @@ function renderTable () {
   }
   
   elseif ($comments->rowCount() == 0) {
-    echo "No comments yet. Be the first to leave one!";
+    echo "<div id='error_msg'>No comments yet. Be the first to leave one!</div>";
     exit;
   }
   
